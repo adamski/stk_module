@@ -64,6 +64,15 @@
  #pragma clang diagnostic ignored "-Wtautological-compare"
 #endif
 
+#if JUCE_ANDROID
+
+  // Stk.h defines stk::swap16/32/64.  This conflicts with macros in <sys/endian.h> on Android. Workaround: undefine them in the stk.h juce module header
+  #pragma message ("undefining swap16/32/64 macros to avoid conflict with stk header")
+  #undef swap16
+  #undef swap32
+  #undef swap64
+#endif
+
 #if JUCE_MSVC
  #pragma warning (push)
  #pragma warning (disable: 4127 4702 4244 4305 4100 4996 4309)
