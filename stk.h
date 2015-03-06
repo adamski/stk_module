@@ -53,16 +53,6 @@
  #define __LITTLE_ENDIAN__
 #endif
 
-#if JUCE_ANDROID
-
-  #include <sys/endian.h>
-  // Stk.h defines stk::swap16/32/64.  This conflicts with macros in <sys/endian.h> on Android. Workaround: undefine them in the stk.h juce module header
-  #pragma message ("undefining swap16/32/64 macros to avoid conflict with stk header")
-  #undef swap16
-  #undef swap32
-  #undef swap64
-#endif
-
 #if JUCE_MAC
  #define __MACOSX_CORE__
 #endif
